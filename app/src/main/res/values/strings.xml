@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ConsultorioAndrade</string>
+    <string name="open_drawer">Abrir Drawer</string>
+    <string name="close_drawer">Cerrar Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

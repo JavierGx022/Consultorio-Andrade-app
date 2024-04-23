@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "13660012104",
+    "project_id": "consultorio-andrade",
+    "storage_bucket": "consultorio-andrade.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:13660012104:android:99ab0e3e25bfc02f8be27d",
+        "android_client_info": {
+          "package_name": "com.componentes.consultorioandrade"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUIJTgeYivVUHZSeru5KZxti4twXiSpvo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

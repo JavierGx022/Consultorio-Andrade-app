@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/group_call"
+        android:checkableBehavior="single">
+
+        <item android:id="@+id/info_Per"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="Información personal"/>
+
+        <item android:id="@+id/Schedule"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="Agendar cita"/>
+
+        <item android:id="@+id/Appointment"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="Mis citas"/>
+    </group>
+
+    <item android:title="Accciones extras">
+        <menu>
+            <group>
+                <item android:id="@+id/Sign_off"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="Cerrar sesión"/>
+
+
+            </group>
+        </menu>
+    </item>
+</menu>
