@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Eliminacion"
+        android:layout_gravity="center_horizontal"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-black"/>
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/delete"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/tvMs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="La cita se ha eliminado correctamente"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:layout_marginTop="5dp"
+        android:textSize="20dp"
+        android:textAlignment="center"/>
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aceptar"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/gradiente_button"
+        android:textColor="@color/white"/>
+
+</LinearLayout>

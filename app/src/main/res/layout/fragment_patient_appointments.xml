@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.PatientAppointments"
+    android:id="@+id/fragment_container">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Citas programadas"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="sans-serif-black"
+            android:textSize="25dp"
+            android:textColor="@color/black"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:layout_gravity="center_horizontal"/>
+        <EditText
+            android:id="@+id/consultation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="dd/mm/aaaa"
+            android:focusable="false"
+            android:clickable="true"
+            android:inputType="date"
+            android:maxLines="1"
+            android:layout_gravity="center_horizontal"/>
+
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filtrar"
+            android:layout_gravity="center_horizontal"/>
+
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+
+        <ListView
+            android:id="@+id/Appointments_day"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"/>
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

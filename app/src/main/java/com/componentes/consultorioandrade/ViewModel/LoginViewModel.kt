@@ -1,7 +1,6 @@
 package com.componentes.consultorioandrade.ViewModel
 
-import android.app.Application
-import android.widget.Toast
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -15,15 +14,14 @@ class LoginViewModel:ViewModel() {
     val loginResult: MutableLiveData<Boolean> = MutableLiveData()
     val errorMessage: MutableLiveData<String> = MutableLiveData()
 
-    // Método para iniciar sesión con correo electrónico y contraseña
-    // Método para iniciar sesión con correo electrónico y contraseña
+
     fun login(email: String, password: String, context: Context) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Inicio de sesión exitoso
                     loginResult.value = true
-                    saveLoginStatus(context, true) // Guardar estado de inicio de sesión
+                    saveLoginStatus(context, true)
                     Log.i("TAG", "INICIO DE SESION CORRECTO")
                 } else {
                     // Fallo en el inicio de sesión
@@ -46,6 +44,10 @@ class LoginViewModel:ViewModel() {
                     errorMessage.value = task.exception?.message ?: "Error desconocido"
                 }
             }
+    }
+
+    fun logOut(){
+        firebaseAuth.signOut()
     }
 
     companion object {

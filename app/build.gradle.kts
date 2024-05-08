@@ -74,6 +74,8 @@ dependencies {
     implementation ("androidx.drawerlayout:drawerlayout:1.2.0")
     implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.squareup.picasso:picasso:2.8")
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

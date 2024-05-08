@@ -18,6 +18,10 @@
         <item android:id="@+id/Appointment"
             android:icon="@android:drawable/ic_menu_recent_history"
             android:title="Mis citas"/>
+
+        <item android:id="@+id/AppointmentUsers"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="Citas programadas"/>
     </group>
 
     <item android:title="Accciones extras">

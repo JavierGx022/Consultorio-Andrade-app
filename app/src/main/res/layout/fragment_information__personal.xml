@@ -29,17 +29,19 @@
             android:layout_height="wrap_content"
             android:text="Tipo de documento"
             android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/txtTipoD"
+        <Spinner
+            android:id="@+id/spTDoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/border_spinner"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nro Documento"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
         <EditText
             android:id="@+id/txtNorD"
             android:layout_width="match_parent"
@@ -73,17 +75,18 @@
             android:layout_height="wrap_content"
             android:text="Género"
             android:textColor="@color/black"/>
-        <EditText
-            android:id="@+id/txtGenero"
-            android:layout_width="match_parent"
+        <Spinner
+            android:id="@+id/spGenero"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           />
+            android:background="@drawable/border_spinner"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Fecha de nacimiento"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"/>
         <EditText
             android:id="@+id/txtDateBorn"
             android:layout_width="wrap_content"
@@ -94,6 +97,13 @@
             android:inputType="date"
             android:maxLines="1"/>
 
+        <Button
+            android:id="@+id/btnFile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar foto"
+            android:drawableRight="@drawable/icon_gallery"/>
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="16dp"/>
@@ -102,7 +112,8 @@
             android:id="@+id/buttonSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar" />
+            android:text="Guardar"
+            android:background="@drawable/gradiente_save"/>
 
     </LinearLayout>
 </FrameLayout>

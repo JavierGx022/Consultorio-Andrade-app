@@ -7,7 +7,9 @@ data class Paciente(
     val nombreCompleto: String = "",
     val celular: String = "",
     val genero: String = "",
-    val fechaNacimiento: String = ""
+    val fechaNacimiento: String = "",
+    val paciente: Boolean=true,
+    val imagen:String=""
 ) {
     fun toMap(): Map<String, Any> {
         return mapOf(
@@ -17,7 +19,9 @@ data class Paciente(
             "nombreCompleto" to nombreCompleto,
             "celular" to celular,
             "genero" to genero,
-            "fechaNacimiento" to fechaNacimiento
+            "fechaNacimiento" to fechaNacimiento,
+            "paciente" to paciente,
+            "imagen" to imagen
         )
     }
 }

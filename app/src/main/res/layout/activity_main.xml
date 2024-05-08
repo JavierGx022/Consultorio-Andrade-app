@@ -28,10 +28,18 @@
             android:background="#7097FF"
             />
 
+        <ImageView
+            android:id="@+id/imgMain"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:src="@drawable/fondo_main"/>
+
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -43,6 +51,9 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu_drawer"/>
+
+
+
 
 
 

@@ -14,66 +14,54 @@
 
 
 
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AGENDAR CITA"
+        android:text="Detalles de la cita"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-black"
         android:textSize="25dp"
         android:textColor="@color/black"/>
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp"/>
-
 
         <LinearLayout
-            android:id="@+id/llBuscar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <EditText
-                android:id="@+id/txtBuscar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Identificacion del paciente"
-                android:textAlignment="center"/>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
-
-
-            <Button
-                android:id="@+id/btnBuscar"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:text="Buscar"
-                android:drawableRight="@drawable/icon_b"
-                android:layout_gravity="center"
-                android:background="@drawable/gradiente_button"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:fontFamily="sans-serif-black"/>
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
+            android:layout_height="100dp"
+            android:orientation="vertical"
+            android:layout_marginTop="13dp">
 
             <TextView
-                android:id="@+id/tvPaciente"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Paciente encontrado"
+                android:text="Informacion paciente"
                 android:textSize="20dp"
-                android:background="@drawable/border_textview"
-                android:drawableTop="@drawable/icon_user"
-                />
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-black"/>
+
+            <TextView
+                android:id="@+id/tvNombreP"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre del paciente"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
+            <TextView
+                android:id="@+id/tvCedula"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cedula del paciente"
+                android:textColor="@color/black"
+                android:textSize="18dp"/>
 
         </LinearLayout>
 
+
+
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp"/>
+            android:layout_height="15dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -126,7 +114,7 @@
             android:id="@+id/btnSaveAppo"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="Editar"
             android:background="@drawable/gradiente_save"
             android:drawableRight="@drawable/icon_save"
             android:layout_gravity="center"
@@ -134,6 +122,24 @@
             android:textSize="16dp"
             android:fontFamily="sans-serif-black"
             />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"/>
+        <Button
+            android:id="@+id/btnDeleteAppo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="Eliminar"
+            android:background="@drawable/gradiente_delete"
+            android:drawableRight="@drawable/icon_delete"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:fontFamily="sans-serif-black"
+            />
+
+
+
     </LinearLayout>
 
 </FrameLayout>

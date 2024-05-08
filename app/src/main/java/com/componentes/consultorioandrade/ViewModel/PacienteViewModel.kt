@@ -24,20 +24,48 @@ class PacienteViewModel: ViewModel() {
     }
 
 
-    fun getPersonalInformation(callback: (Paciente?) -> Unit) {
+
+
+    fun getPersonalInformation(callback: (personalInformation: Paciente?, error: String?) -> Unit) {
         val currentUserId = auth.currentUser?.uid ?: return
 
         val personalInformationRef = database.getReference("users/$currentUserId/paciente")
-        personalInformationRef.addValueEventListener(object : ValueEventListener {
+        personalInformationRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val personalInformation = dataSnapshot.getValue(Paciente::class.java)
-                callback(personalInformation)
-                Log.i("TAG","DATOS DEL USUARIO"+personalInformation?.uid.toString())
+                if (personalInformation != null) {
+                    callback(personalInformation, null)
+                } else {
+                    // Indica que no se encontraron datos
+                    callback(null, "No se encontraron datos de información personal para el usuario actual.")
+                }
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Manejar el error
-                callback(null)
+                // Maneja el error
+                callback(null, "Error al obtener información personal: ${databaseError.message}")
+            }
+        })
+    }
+
+    fun getPacieteUID(uid:String,callback: (personalInformation: Paciente?, error: String?) -> Unit) {
+        val currentUserId = auth.currentUser?.uid ?: return
+
+        val personalInformationRef = database.getReference("users/$uid/paciente")
+        personalInformationRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val personalInformation = dataSnapshot.getValue(Paciente::class.java)
+                if (personalInformation != null) {
+                    callback(personalInformation, null)
+                } else {
+                    // Indica que no se encontraron datos
+                    callback(null, "No se encontraron datos de información personal para el usuario actual.")
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Maneja el error
+                callback(null, "Error al obtener información personal: ${databaseError.message}")
             }
         })
     }
@@ -56,4 +84,30 @@ class PacienteViewModel: ViewModel() {
                 onFailure.invoke() // Llama a la función de fracaso si ocurrió un error
             }
     }
+
+
+    fun buscarPacientePorIdentificacion(identificacion: String, callback: (Paciente?) -> Unit) {
+        val usersRef = database.getReference("users")
+        usersRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var pacienteEncontrado: Paciente? = null
+                for (userSnapshot in snapshot.children) {
+                    val pacienteSnapshot = userSnapshot.child("paciente")
+                    val paciente = pacienteSnapshot.getValue(Paciente::class.java)
+                    if (paciente?.numeroDocumento == identificacion) {
+                        pacienteEncontrado = paciente
+                        break
+                    }
+                }
+                callback(pacienteEncontrado)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                callback(null)
+            }
+        })
+    }
+
+
+
 }
