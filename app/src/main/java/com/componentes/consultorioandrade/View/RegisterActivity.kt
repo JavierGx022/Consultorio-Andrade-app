@@ -1,5 +1,6 @@
 package com.componentes.consultorioandrade.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -44,6 +45,12 @@ class RegisterActivity : AppCompatActivity() {
             loginViewModel.register(email, password)
 
 
+        }
+
+        binding.tvLogin.setOnClickListener {
+            val intent= Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }

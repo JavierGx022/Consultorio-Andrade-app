@@ -1,10 +1,13 @@
 package com.componentes.consultorioandrade.View
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.os.SystemClock
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         auth = FirebaseAuth.getInstance()
         rol= intent.getStringExtra("rol").toString()
         viewModel = ViewModelProvider(this).get(PacienteViewModel::class.java)
@@ -202,6 +206,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun imgVisibility(){
         binding.imgMain.visibility= View.GONE
+    }
+
+
+    private fun scheduleNotification(delay: Long) {
+        val scheduler = getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(this, MyAppointments::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val triggerAtMillis = SystemClock.elapsedRealtime() + delay
+        scheduler.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, triggerAtMillis, pendingIntent)
     }
 }
 

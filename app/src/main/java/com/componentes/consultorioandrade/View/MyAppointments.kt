@@ -41,6 +41,8 @@ class MyAppointments : Fragment() {
         viewModelC = ViewModelProvider(this).get(CitaViewModel::class.java)
         auth = FirebaseAuth.getInstance()
 
+
+
         val citasList = mutableListOf<Cita>()
         val adapter = CitaAdapter(requireContext(), citasList)
         val listView = binding.listCitas

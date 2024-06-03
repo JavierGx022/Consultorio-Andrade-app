@@ -76,7 +76,7 @@
             android:layout_height="15dp"/>
 
         <TextView
-            android:id="@+id/tvCreateA"
+            android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Ir a login"

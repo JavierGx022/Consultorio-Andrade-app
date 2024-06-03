@@ -266,12 +266,21 @@ class schedule_appointment : Fragment(), DatePickerDialog.OnDateSetListener {
         messageTextView.setText(mensaje)
 
         val alertDialog = builder.create()
+        val fragmentManager = requireActivity().supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+
+       // Obtener el fragmento actual
+        val currentFragment = fragmentManager.findFragmentById(R.id.fragment_container)
 
         acceptButton.setOnClickListener {
             // Acción al hacer clic en el botón de aceptar
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            startActivity(intent)
-            requireActivity().finish() // Cierra la actividad actual para evitar volver atrás
+            // Verificar que el fragmento no sea nulo
+            currentFragment?.let {
+                fragmentTransaction.remove(it)
+                fragmentTransaction.commit()
+            }
+
+// Dismiss the alert dialog
             alertDialog.dismiss()
         }
 
