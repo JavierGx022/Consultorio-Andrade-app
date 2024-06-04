@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Consultorio Andrade</string>
+    <string name="open_drawer">Abrir Drawer</string>
+    <string name="close_drawer">Cerrar Drawer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_notification">default_fcm</string>
+
+    <string name="info_cita">Appointment Details</string>
+    <string name="info_paciente">Patient Information</string>
+    <string name="info_personal">Personal Information</string>
+    <string name="agendar_cita">Schedule Appointment</string>
+    <string name="citas_programadas">My Scheduled Appointments</string>
+    <string name="fecha">Date</string>
+    <string name="hora">Time</string>
+    <string name="motivo">Reason</string>
+    <string name="tipo_doc">Document Type</string>
+    <string name="nro_doc">Document Number</string>
+    <string name="nombre">Full Name</string>
+    <string name="celular">Mobile</string>
+    <string name="genero">Gender</string>
+    <string name="fecha_nac">Date of Birth</string>
+    <string name="hint_doc">Patient Identification</string>
+
+    <!-- login and register-->
+    <string name="btn_ingresar">Login</string>
+    <string name="btn_crear">Create</string>
+    <string name="btn_irlogin">Go to Login</string>
+    <string name="btn_ircrear">Create Account</string>
+
+    <string name="iniciar_sesion">Login</string>
+    <string name="crear_cuents">Create Account</string>
+    <string name="email">Email</string>
+    <string name="pass">Password</string>
+
+    <!-- Menu-->
+    <string name="mis_citas">My Appointments</string>
+    <string name="citas_prog">Scheduled Appointments</string>
+    <string name="cerrar_sesion">Logout</string>
+
+    <!-- Alert save-->
+    <string name="alert_titulo">Saved</string>
+    <string name="alert_mensaje">The information has been saved successfully</string>
+    <string name="btn_aceptar">Accept</string>
+
+    <!-- Buttons-->
+    <string name="btn_editar">Edit</string>
+    <string name="btn_eliminar">Delete</string>
+    <string name="btn_guardar">Save</string>
+    <string name="btn_foto">Select Photo</string>
+    <string name="btn_buscar">Search</string>
+    <string name="btn_filtrar">Filter</string>
+</resources>

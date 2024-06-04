@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inicio de sesion"
+        android:text="@string/iniciar_sesion"
         android:layout_gravity="center_horizontal"
         android:textSize="30dp"
         android:fontFamily="sans-serif-black"
@@ -37,7 +37,7 @@
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail"
+            android:hint="@string/email"
             android:drawableLeft="@drawable/icon_email"
             android:inputType="textEmailAddress"/>
 
@@ -51,7 +51,7 @@
             android:id="@+id/txtPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/pass"
             android:drawableLeft="@drawable/icon_pass"
             android:inputType="textPassword"/>
 
@@ -65,7 +65,7 @@
             android:id="@+id/btnIngresar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ingresar"
+            android:text="@string/btn_ingresar"
             android:background="@drawable/gradiente_button"
             android:textColor="@color/white"
             android:textSize="17dp"
@@ -79,7 +79,7 @@
             android:id="@+id/tvCreateA"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="crear cuenta"
+            android:text="@string/btn_ircrear"
             android:layout_gravity="center_horizontal"
             android:clickable="true"
             android:fontFamily="sans-serif-black"

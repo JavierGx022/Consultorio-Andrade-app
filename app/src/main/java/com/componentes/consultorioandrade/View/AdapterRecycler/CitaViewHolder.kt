@@ -11,9 +11,9 @@ class CitaViewHolder(view: View): RecyclerView.ViewHolder(view) {
     val horar= view.findViewById<TextView>(R.id.tvHoraR)
     val motivo= view.findViewById<TextView>(R.id.tvMotivoR)
     fun render(cita:Cita, onClickListener: (Cita)->Unit){
-        fechar.text= "Fecha: "+cita.fecha
-        horar.text= "Hora: "+cita.hora
-        motivo.text= "Motivo: "+cita.motivo
+        fechar.text= R.string.fecha.toString() +": "+cita.fecha
+        horar.text= R.string.hora.toString()+": "+cita.hora
+        motivo.text= R.string.motivo.toString()+": "+cita.motivo
 
         itemView.setOnClickListener{
             onClickListener(cita)

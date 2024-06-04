@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="INFORMACION PERSONAL"
+            android:text="@string/info_personal"
             android:layout_gravity="center_horizontal"
             android:fontFamily="sans-serif-black"
             android:textSize="25dp"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tipo de documento"
+            android:text="@string/tipo_doc"
             android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/spTDoc"
@@ -39,7 +39,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nro Documento"
+            android:text="@string/nro_doc"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"/>
         <EditText
@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre completo"
+            android:text="@string/nombre"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/txttName"
@@ -62,7 +62,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Celular"
+            android:text="@string/celular"
             android:textColor="@color/black"/>
         <EditText
             android:id="@+id/txtCelular"
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Género"
+            android:text="@string/genero"
             android:textColor="@color/black"/>
         <Spinner
             android:id="@+id/spGenero"
@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de nacimiento"
+            android:text="@string/fecha_nac"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"/>
         <EditText
@@ -101,7 +101,7 @@
             android:id="@+id/btnFile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Seleccionar foto"
+            android:text="@string/btn_foto"
             android:drawableRight="@drawable/icon_gallery"/>
 
         <Space
@@ -112,7 +112,7 @@
             android:id="@+id/buttonSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="@string/btn_guardar"
             android:background="@drawable/gradiente_save"/>
 
     </LinearLayout>

@@ -9,27 +9,27 @@
 
         <item android:id="@+id/info_Per"
             android:icon="@android:drawable/ic_menu_info_details"
-            android:title="Información personal"/>
+            android:title="@string/info_personal"/>
 
         <item android:id="@+id/Schedule"
             android:icon="@android:drawable/ic_menu_agenda"
-            android:title="Agendar cita"/>
+            android:title="@string/agendar_cita"/>
 
         <item android:id="@+id/Appointment"
             android:icon="@android:drawable/ic_menu_recent_history"
-            android:title="Mis citas"/>
+            android:title="@string/mis_citas"/>
 
         <item android:id="@+id/AppointmentUsers"
             android:icon="@android:drawable/ic_menu_recent_history"
-            android:title="Citas programadas"/>
+            android:title="@string/citas_prog"/>
     </group>
 
-    <item android:title="Accciones extras">
+    <item android:title="">
         <menu>
             <group>
                 <item android:id="@+id/Sign_off"
                 android:icon="@android:drawable/ic_menu_close_clear_cancel"
-                android:title="Cerrar sesión"/>
+                android:title="@string/cerrar_sesion"/>
 
 
             </group>

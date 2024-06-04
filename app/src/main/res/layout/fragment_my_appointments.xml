@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mis citas programadas"
+            android:text="@string/citas_programadas"
             android:textSize="25dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"

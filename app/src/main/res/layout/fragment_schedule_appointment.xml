@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AGENDAR CITA"
+        android:text="@string/agendar_cita"
         android:layout_gravity="center_horizontal"
         android:fontFamily="sans-serif-black"
         android:textSize="25dp"
@@ -36,7 +36,7 @@
                 android:id="@+id/txtBuscar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Identificacion del paciente"
+                android:hint="@string/hint_doc"
                 android:textAlignment="center"/>
             <Space
                 android:layout_width="match_parent"
@@ -47,7 +47,7 @@
                 android:id="@+id/btnBuscar"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Buscar"
+                android:text="@string/btn_buscar"
                 android:drawableRight="@drawable/icon_b"
                 android:layout_gravity="center"
                 android:background="@drawable/gradiente_button"
@@ -63,7 +63,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Paciente encontrado"
                 android:textSize="20dp"
                 android:background="@drawable/border_textview"
                 android:drawableTop="@drawable/icon_user"
@@ -78,7 +77,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha"
+            android:text="@string/fecha"
             android:textColor="@color/black"
             android:textSize="17dp"/>
         <EditText
@@ -95,7 +94,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hora"
+            android:text="@string/hora"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
             android:textSize="17dp"/>
@@ -108,7 +107,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Motivo"
+            android:text="@string/motivo"
             android:textColor="@color/black"
             android:layout_marginTop="5dp"
             android:textSize="17dp"/>
@@ -126,7 +125,7 @@
             android:id="@+id/btnSaveAppo"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:text="Guardar"
+            android:text="@string/btn_guardar"
             android:background="@drawable/gradiente_save"
             android:drawableRight="@drawable/icon_save"
             android:layout_gravity="center"

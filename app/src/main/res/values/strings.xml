@@ -1,8 +1,53 @@
 <resources>
-    <string name="app_name">ConsultorioAndrade</string>
+    <string name="app_name">Consultorio Andrade</string>
     <string name="open_drawer">Abrir Drawer</string>
     <string name="close_drawer">Cerrar Drawer</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="default_notification">default_fcm</string>
+
+    <string name="info_cita" translatable="false">Detalles de la cita</string>
+    <string name="info_paciente">Información del paciente</string>
+    <string name="info_personal">Información personal</string>
+    <string name="agendar_cita">Agendar cita</string>
+    <string name="citas_programadas">Mis citas programadas</string>
+    <string name="fecha">Fecha</string>
+    <string name="hora">Hora</string>
+    <string name="motivo">Motivo</string>
+    <string name="tipo_doc">Tipo de documento</string>
+    <string name="nro_doc">Nro de documento</string>
+    <string name="nombre">Nombre y apellidos</string>
+    <string name="celular">Celular</string>
+    <string name="genero">Género</string>
+    <string name="fecha_nac">Fecha de nacimiento</string>
+    <string name="hint_doc">Identififcación del paciente</string>
+
+    <!-- login y register-->
+    <string name="btn_ingresar">Ingresar</string>
+    <string name="btn_crear">Crear</string>
+    <string name="btn_irlogin">Ir al login</string>
+    <string name="btn_ircrear">Crear cuenta</string>
+
+    <string name="iniciar_sesion">Iniciar sesión</string>
+    <string name="crear_cuents">Crear cuenta</string>
+    <string name="email">E-mail</string>
+    <string name="pass">Contraseña</string>
+
+    <!-- Menu-->
+    <string name="mis_citas">Mis citas</string>
+    <string name="citas_prog">Citas programadas</string>
+    <string name="cerrar_sesion">Cerrar sesión</string>
+
+    <!-- Alert save-->
+    <string name="alert_titulo">Guardado</string>
+    <string name="alert_mensaje">La información se ha guardado correctamente</string>
+    <string name="btn_aceptar">Aceptar</string>
+
+    <!-- Botones-->
+    <string name="btn_editar">Editar</string>
+    <string name="btn_eliminar">Eliminar</string>
+    <string name="btn_guardar">Guardar</string>
+    <string name="btn_foto">Seleccionar foto</string>
+    <string name="btn_buscar">Buscar</string>
+    <string name="btn_filtrar">Filtrar</string>
 </resources>
