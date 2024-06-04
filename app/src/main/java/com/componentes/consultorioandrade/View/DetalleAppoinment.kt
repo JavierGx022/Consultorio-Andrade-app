@@ -11,25 +11,42 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import android.widget.EditText
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.componentes.consultorioandrade.Model.Cita
 import com.componentes.consultorioandrade.R
-import com.componentes.consultorioandrade.ViewModel.CitaViewModel
+import com.componentes.consultorioandrade.ViewModel.CitaViewModell
 import com.componentes.consultorioandrade.ViewModel.PacienteViewModel
 import com.componentes.consultorioandrade.databinding.FragmentInfoAppointmentBinding
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Calendar
 import java.util.Locale
+import java.util.UUID
 
 
 class DetalleAppoinment : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding: FragmentInfoAppointmentBinding? = null
-    private lateinit var viewModelC: CitaViewModel
+    private lateinit var viewModelC: CitaViewModell
     private lateinit var viewModel: PacienteViewModel
     private val binding get() = _binding!!
     private var hora=""
     private var motivo=""
+    private val auth = FirebaseAuth.getInstance()
+    private var uidU= ""
+
+
+    companion object {
+        private const val ARG_MY_STRING = "citaId"
+
+        fun newInstance(myString: String) =
+            DetalleAppoinment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_MY_STRING, myString)
+                }
+            }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,8 +60,9 @@ class DetalleAppoinment : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModelC = ViewModelProvider(this).get(CitaViewModel::class.java)
+        viewModelC = ViewModelProvider(this).get(CitaViewModell::class.java)
         viewModel = ViewModelProvider(this).get(PacienteViewModel::class.java)
+        val currentUserId = auth.currentUser?.uid ?: return
         binding.txtDateAppointment.setOnClickListener {
             showDatePicker()
         }
@@ -55,19 +73,78 @@ class DetalleAppoinment : Fragment(), DatePickerDialog.OnDateSetListener {
         showInfoCita()
 
 
+        //Botones de accion
+
+
+        binding.btnSaveAppo.setOnClickListener {
+            editDataUID(hora,motivo, uidU)
+        }
+
+        binding.btnDeleteAppo.setOnClickListener {
+            delete()
+        }
+
+
 
     }
 
-    private fun showInfoCita(){
+    private fun delete(){
         val citaId = arguments?.getString("citaId").toString()
-        val citasList = mutableListOf<Cita>()
+        viewModelC.eliminarCita(uidU,citaId) { exito ->
+            if (exito) {
+                Toast.makeText(requireContext(), "Cita eliminada", Toast.LENGTH_SHORT).show()
+                val myAppoinmentFragment = MyAppointments()
 
-        viewModelC.getCitasPorId(citaId){c->
-            c?.let {
-                citasList.clear()
-                citasList.addAll(it)
+                // Reemplaza el fragmento actual con el nuevo fragmento
+                requireActivity().supportFragmentManager.beginTransaction().apply {
+                    replace(R.id.fragment_container, myAppoinmentFragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            } else {
+                Toast.makeText(requireContext(), "Error al eliminar la cita", Toast.LENGTH_SHORT).show()
             }
-            var uid= citasList.get(0).uid
+        }
+    }
+
+    private fun editDataUID(hora:String, motivo:String, uid:String){
+        val citaId = arguments?.getString("citaId").toString()
+            val cita = Cita(
+                citaId,
+                uid,
+                binding.txtDateAppointment.text.toString(),
+                hora,
+                motivo
+            )
+
+            viewModelC.validarCitaExistente(binding.txtDateAppointment.text.toString(),hora){c->
+                if(c){
+                    Toast.makeText(requireContext(), "Fecha u Hora no disponible", Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModelC.editarCita(uid,cita){exito->
+                        if(exito){
+                            Toast.makeText(requireContext(), "Se ha editado la información", Toast.LENGTH_SHORT).show()
+                        }else{
+                            Toast.makeText(requireContext(), "FALLO", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                }
+            }
+
+
+
+    }
+
+    private fun showInfoCita() {
+
+        val citaId = arguments?.getString("citaId").toString()
+
+        viewModelC.getCitasPorId(citaId)
+
+        viewModelC.citasPorIdLiveData.observe(viewLifecycleOwner, { c ->
+            var uid= c.get(0).uid
+            uidU= uid
             viewModel.getPacieteUID(uid){p,e->
                 if(p!=null){
                     binding.tvNombreP.setText("Nombre: "+p.nombreCompleto)
@@ -77,12 +154,15 @@ class DetalleAppoinment : Fragment(), DatePickerDialog.OnDateSetListener {
                     Log.e("TAG", "cedula: $uid")
                 }
             }
-            var indexH= indexH(citasList.get(0).hora)
-            var indexR= indexH(citasList.get(0).motivo)
-            binding.txtDateAppointment.setText(citasList.get(0).fecha)
+            var indexH= indexH(c.get(0).hora)
+            var indexR= indexR(c.get(0).motivo)
+            binding.txtDateAppointment.setText(c.get(0).fecha)
             binding.spHours.setSelection(indexH)
             binding.spReason.setSelection(indexR)
-        }
+        })
+
+
+
     }
 
     private fun downSpinner(){
@@ -183,8 +263,8 @@ class DetalleAppoinment : Fragment(), DatePickerDialog.OnDateSetListener {
         var index=0
         when(opcion){
             "Consulta" ->index=0
-            "Calza" ->index=0
-            "Extraccion"->index=0
+            "Calza" ->index=1
+            "Extraccion"->index=2
         }
         return index
     }

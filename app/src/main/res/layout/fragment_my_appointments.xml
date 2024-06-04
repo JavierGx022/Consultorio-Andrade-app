@@ -27,12 +27,14 @@
 
 
 
-        <ListView
-            android:id="@+id/listCitas"
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"/>
+
+
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rvCitas"
+           android:layout_width="360dp"
+           android:layout_height="400dp"
+           android:padding="10dp"
+           android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
 

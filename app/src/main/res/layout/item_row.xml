@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tvFechaR"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="fecha"
+        android:background="@drawable/border_textview"
+        android:padding="5dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="17dp"/>
+
+    <TextView
+        android:id="@+id/tvHoraR"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Hora"
+        android:background="@drawable/border_textview"
+        android:padding="5dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="17dp"/>
+
+    <TextView
+        android:id="@+id/tvMotivoR"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:text="Motivo"
+        android:background="@drawable/border_textview"
+        android:padding="5dp"
+        android:fontFamily="sans-serif-black"
+        android:textSize="17dp"/>
+
+
+</LinearLayout>

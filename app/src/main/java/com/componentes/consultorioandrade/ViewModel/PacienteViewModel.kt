@@ -77,11 +77,11 @@ class PacienteViewModel: ViewModel() {
         personalInformationRef.updateChildren(paciente.toMap())
             .addOnSuccessListener {
                 Log.i("TAG", "Datos del paciente actualizados correctamente")
-                onSuccess.invoke() // Llama a la función de éxito si la operación fue exitosa
+                onSuccess.invoke()
             }
             .addOnFailureListener { e ->
                 Log.e("TAG", "Error al actualizar datos del paciente: $e")
-                onFailure.invoke() // Llama a la función de fracaso si ocurrió un error
+                onFailure.invoke()
             }
     }
 

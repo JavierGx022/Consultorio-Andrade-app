@@ -23,7 +23,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.componentes.consultorioandrade.Model.Cita
 import com.componentes.consultorioandrade.Model.Paciente
 import com.componentes.consultorioandrade.R
-import com.componentes.consultorioandrade.ViewModel.CitaViewModel
+
+import com.componentes.consultorioandrade.ViewModel.CitaViewModell
 import com.componentes.consultorioandrade.ViewModel.PacienteViewModel
 import com.componentes.consultorioandrade.databinding.FragmentInformationPersonalBinding
 import com.componentes.consultorioandrade.databinding.FragmentScheduleAppointmentBinding
@@ -37,7 +38,7 @@ class schedule_appointment : Fragment(), DatePickerDialog.OnDateSetListener {
 
 
     private lateinit var viewModel: PacienteViewModel
-    private lateinit var viewModelC: CitaViewModel
+    private lateinit var viewModelC: CitaViewModell
     private lateinit var auth: FirebaseAuth
     private var _binding: FragmentScheduleAppointmentBinding? = null
     private val binding get() = _binding!!
@@ -61,7 +62,7 @@ class schedule_appointment : Fragment(), DatePickerDialog.OnDateSetListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(PacienteViewModel::class.java)
-        viewModelC = ViewModelProvider(this).get(CitaViewModel::class.java)
+        viewModelC = ViewModelProvider(this).get(CitaViewModell::class.java)
         auth = FirebaseAuth.getInstance()
 
         var uidUser=""
@@ -87,23 +88,11 @@ class schedule_appointment : Fragment(), DatePickerDialog.OnDateSetListener {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         arguments?.let {
             myString = it.getString("myString")
             // Utiliza el valor de myString aquí
             myString?.let { receivedString ->
                 if(receivedString.equals("true")){
-                    Log.e("TAG","el valor es:"+receivedString)
                     binding.llBuscar.visibility = View.GONE
                     binding.btnSaveAppo.setOnClickListener {
 
@@ -119,10 +108,14 @@ class schedule_appointment : Fragment(), DatePickerDialog.OnDateSetListener {
             }
         }
 
+
+
     }
 
     private fun downSpinner(){
-        val opciones_h = listOf("8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m", "12:00 a.m")
+        val opciones_h = listOf("8:00 a.m", "9:00 a.m", "10:00 a.m", "11:00 a.m",
+            "12:00 a.m","02:00 pm","03:00 pm","04:00 pm","05:00 pm","06:00 pm",
+            "07:00 pm","08:00 pm","09:00 pm")
         val opciones_r = listOf("Consulta", "Calza", "Extraccion")
 
         // Crea un ArrayAdapter con la lista de opciones

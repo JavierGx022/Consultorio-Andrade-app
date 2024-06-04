@@ -2,6 +2,7 @@ package com.componentes.consultorioandrade.View
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -13,9 +14,12 @@ import android.widget.DatePicker
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.componentes.consultorioandrade.Model.Cita
 import com.componentes.consultorioandrade.R
-import com.componentes.consultorioandrade.ViewModel.CitaViewModel
+import com.componentes.consultorioandrade.View.AdapterRecycler.CitaAdapter
+
+import com.componentes.consultorioandrade.ViewModel.CitaViewModell
 import com.componentes.consultorioandrade.ViewModel.PacienteViewModel
 import com.componentes.consultorioandrade.databinding.FragmentPatientAppointmentsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -28,7 +32,7 @@ class PatientAppointments : Fragment(), DatePickerDialog.OnDateSetListener {
     private var _binding: FragmentPatientAppointmentsBinding? = null
     private lateinit var viewModel: PacienteViewModel
     private val binding get() = _binding!!
-    private lateinit var viewModelC: CitaViewModel
+    private lateinit var viewModelC: CitaViewModell
     private lateinit var auth: FirebaseAuth
 
 
@@ -44,7 +48,7 @@ class PatientAppointments : Fragment(), DatePickerDialog.OnDateSetListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModelC = ViewModelProvider(this).get(CitaViewModel::class.java)
+        viewModelC = ViewModelProvider(this).get(CitaViewModell::class.java)
         viewModel = ViewModelProvider(this).get(PacienteViewModel::class.java)
         auth = FirebaseAuth.getInstance()
 
@@ -53,62 +57,21 @@ class PatientAppointments : Fragment(), DatePickerDialog.OnDateSetListener {
             showDatePicker()
         }
 
-        val citasList = mutableListOf<Cita>()
-        val adapter = CitaAdapter(requireContext(), citasList)
-        val listView = binding.AppointmentsDay
-        listView.adapter = adapter
 
-        listView.setOnItemClickListener { parent, view, position, id ->
-            // Obtener la cita seleccionada
-            val citaSeleccionada = citasList[position]
 
-            // Crear un Bundle para pasar datos al fragmento de destino
-            val bundle = Bundle().apply {
-                // Aquí puedes pasar cualquier dato adicional que necesites en el fragmento de destino
-                putString("citaId", citaSeleccionada.id_cita)
-            }
-
-            // Crear una instancia del fragmento de destino
-            val fragmentoDestino = DetalleAppoinment().apply {
-                arguments = bundle
-            }
-
-            // Reemplazar el fragmento actual con el fragmento de destino
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragmentoDestino)
-                .addToBackStack(null) // Opcional: agregar a la pila de retroceso para permitir volver al fragmento anterior
-                .commit()
-        }
+        initRecycler()
 
         binding.btnFilter.setOnClickListener {
             // Obtener la fecha deseada al hacer clic en el botón
             val fechaDeseada = binding.consultationDate.text.toString()
 
             // Obtener las citas por la fecha deseada
-            viewModelC.getCitasPorFecha(fechaDeseada) { citas ->
-                citas?.let {
-                    citasList.clear()
-                    citasList.addAll(it)
-
-                    // Crear una lista para almacenar los nombres de los pacientes
-                    val nombresPacientes = mutableListOf<String>()
-
-                    // Obtener el nombre del paciente para cada cita
-                    for (cita in it) {
-                        viewModel.getPacieteUID(cita.uid) { paciente, error ->
-                            paciente?.let {
-                                nombresPacientes.add(paciente.nombreCompleto)
-                                // Actualizar el adaptador cuando se haya obtenido el nombre del paciente
-                                adapter.notifyDataSetChanged()
-                            }
-                        }
-                    }
-
-                    // Actualizar el adaptador con la lista de nombres de pacientes
-                    adapter.updateNombresPacientes(nombresPacientes)
-                }
-            }
+            viewModelC.getCitasPorFecha(fechaDeseada)
         }
+
+        viewModelC.citasPorFechaLiveData.observe(viewLifecycleOwner, { citasList ->
+            actualizarListView(citasList)
+        })
 
     }
 
@@ -132,33 +95,30 @@ class PatientAppointments : Fragment(), DatePickerDialog.OnDateSetListener {
         etDatePicker.setText(dateFormat.format(calendar.time))
     }
 
-    class CitaAdapter(context: Context, citas: List<Cita>) :
-        ArrayAdapter<Cita>(context, R.layout.list_item_cita, citas) {
 
-        private var nombresPacientes: List<String> = emptyList()
 
-        fun updateNombresPacientes(nombres: List<String>) {
-            nombresPacientes = nombres
+    private fun initRecycler() {
+        binding.rvCitas.layoutManager = LinearLayoutManager(requireContext())
+        // Configurar el adaptador inicialmente con una lista vacía
+        binding.rvCitas.adapter = CitaAdapter(emptyList()) { cita ->
+            onItemSelected(cita)
         }
 
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-            var itemView = convertView
-            if (itemView == null) {
-                itemView = LayoutInflater.from(context).inflate(R.layout.list_item_cita, parent, false)
-            }
+    }
 
-            val tvNombrePaciente = itemView!!.findViewById<TextView>(R.id.tvPacienteN)
-            val tvHora = itemView!!.findViewById<TextView>(R.id.tvHora)
-            val cita = getItem(position)
+    private fun actualizarListView(citasList: List<Cita>) {
+        // Actualizar el adaptador con las citas obtenidas
+        (binding.rvCitas.adapter as CitaAdapter).updateCitas(citasList)
+    }
 
-            tvHora.text= "Hora: ${cita?.hora}"
-            // Muestra el nombre del paciente si está disponible
-            if (position < nombresPacientes.size) {
-                tvNombrePaciente.text = "${nombresPacientes[position]}"
-            } else {
-                tvNombrePaciente.text = "Paciente: Desconocido"
-            }
-            return itemView
+    private fun onItemSelected(cita: Cita) {
+        val detalleAppoinmentFragment = DetalleAppoinment.newInstance(cita.id_cita)
+
+        // Reemplaza el fragmento actual con el nuevo fragmento
+        requireActivity().supportFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, detalleAppoinmentFragment)
+            addToBackStack(null)
+            commit()
         }
     }
 
